@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>생태계의 구성과 평형</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인터랙티브 생태계 탐험</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-stone-50">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl md:text-2xl font-bold text-green-800">🌍 인터랙티브 생태계 탐험</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#section1" class="nav-link text-gray-600 font-semibold border-b-2 border-transparent pb-1">생태계란?</a>
+                    <a href="#section2" class="nav-link text-gray-600 font-semibold border-b-2 border-transparent pb-1">에너지와 물질</a>
+                    <a href="#section3" class="nav-link text-gray-600 font-semibold border-b-2 border-transparent pb-1">안정과 위기</a>
+                    <a href="#section4" class="nav-link text-gray-600 font-semibold border-b-2 border-transparent pb-1">스스로 확인</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <a href="#section1" class="block py-2 px-4 text-sm text-gray-600 hover:bg-green-50 rounded">생태계란?</a>
+                <a href="#section2" class="block py-2 px-4 text-sm text-gray-600 hover:bg-green-50 rounded">에너지와 물질</a>
+                <a href="#section3" class="block py-2 px-4 text-sm text-gray-600 hover:bg-green-50 rounded">안정과 위기</a>
+                <a href="#section4" class="block py-2 px-4 text-sm text-gray-600 hover:bg-green-50 rounded">스스로 확인</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+        
+        <section id="section1" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-green-800">1. 생태계란 무엇일까요?</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">생태계는 특정 공간에 사는 생물들과, 그들을 둘러싼 빛, 물, 공기 같은 비생물 환경이 서로 영향을 주고받으며 살아가는 하나의 거대한 시스템입니다. 이 섹션에서는 생태계를 구성하는 기본 요소들과 그들의 상호작용을 탐험합니다.</p>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-6 text-center">생태계의 구성 요소</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-4 text-center text-green-700">생물적 요인 🌳</h4>
+                        <p class="text-sm text-gray-500 text-center mb-4">생태계에 살아있는 모든 생물들입니다. 역할에 따라 생산자, 소비자, 분해자로 나뉩니다. 아래 카드를 클릭해보세요!</p>
+                        <div class="space-y-4">
+                            <div class="interactive-card p-4 border rounded-lg cursor-pointer" data-info="producer">
+                                <p class="font-bold">🌿 생산자 (Producers)</p>
+                                <div id="producer-info" class="hidden mt-2 text-sm text-gray-700 fade-in">
+                                    <p>광합성을 통해 스스로 양분을 만드는 식물, 식물성 플랑크톤 등이 해당됩니다. 생태계 에너지의 근원이죠.</p>
+                                </div>
+                            </div>
+                            <div class="interactive-card p-4 border rounded-lg cursor-pointer" data-info="consumer">
+                                <p class="font-bold">🐇 소비자 (Consumers)</p>
+                                <div id="consumer-info" class="hidden mt-2 text-sm text-gray-700 fade-in">
+                                    <p>다른 생물을 먹이로 하여 양분을 얻습니다. 풀을 먹는 1차 소비자, 육식동물인 2차, 3차 소비자가 있습니다.</p>
+                                </div>
+                            </div>
+                            <div class="interactive-card p-4 border rounded-lg cursor-pointer" data-info="decomposer">
+                                <p class="font-bold">🍄 분해자 (Decomposers)</p>
+                                <div id="decomposer-info" class="hidden mt-2 text-sm text-gray-700 fade-in">
+                                    <p>죽은 생물이나 배설물을 분해하여 물질을 자연으로 되돌려 보내는 세균, 곰팡이, 버섯 등이 있습니다. 생태계의 청소부이자 물질 순환의 핵심입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-4 text-center text-blue-700">비생물적 요인 ☀️</h4>
+                        <p class="text-sm text-gray-500 text-center mb-4">생물을 둘러싼 모든 환경 요인입니다. 생물의 생존에 필수적이죠.</p>
+                        <ul class="list-disc list-inside space-y-2 bg-blue-50 p-4 rounded-lg">
+                            <li><strong>빛</strong>: 식물의 광합성에 필수적이며, 동물의 활동 주기에 영향을 줍니다.</li>
+                            <li><strong>온도</strong>: 생물의 물질대사 속도를 조절하고, 서식지 분포를 결정합니다.</li>
+                            <li><strong>물</strong>: 모든 생명의 근원으로, 생명 활동의 기본 물질입니다.</li>
+                            <li><strong>토양</strong>: 식물에게 서식지와 양분을 제공하고, 많은 미생물이 사는 터전입니다.</li>
+                            <li><strong>공기</strong>: 호흡에 필요한 산소와 광합성에 필요한 이산화탄소를 공급합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section2" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-green-800">2. 에너지 흐름과 물질 순환</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">생태계는 에너지가 한 방향으로 흐르고 물질이 계속해서 순환하는 역동적인 공간입니다. 먹이 그물 속 에너지의 여정과, 탄소와 같은 물질이 어떻게 재활용되는지 알아봅시다.</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-center">에너지 피라미드</h3>
+                    <p class="text-sm text-gray-600 mb-4 text-center">생산자가 만든 에너지는 먹이 사슬을 따라 위로 전달될수록 약 90%가 소실됩니다. 슬라이더를 움직여 생산자의 에너지 양에 따라 상위 단계의 에너지가 어떻게 변하는지 확인해보세요.</p>
+                    <div class="chart-container">
+                        <canvas id="energyPyramidChart"></canvas>
+                    </div>
+                    <div class="mt-4">
+                        <label for="energy-slider" class="block text-sm font-medium text-gray-700">생산자 에너지 (kcal): <span id="energy-value" class="font-bold text-green-700">10000</span></label>
+                        <input id="energy-slider" type="range" min="1000" max="20000" step="1000" value="10000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-center">물질의 순환: 탄소 이야기</h3>
+                    <p class="text-sm text-gray-600 mb-4 text-center">에너지와 달리, 탄소와 같은 물질은 생태계 내에서 계속 순환하며 재사용됩니다. 아래 다이어그램의 각 단계를 클릭하여 탄소의 여정을 따라가 보세요.</p>
+                    <div class="relative p-4 border-2 border-dashed rounded-lg h-96 flex flex-col justify-around items-center">
+                        <div class="absolute text-5xl text-gray-300 -z-10">🔄</div>
+                        <div class="interactive-card cursor-pointer text-center" data-info="co2">
+                            <p class="text-lg font-bold">💨 대기 중 CO₂</p>
+                            <div id="co2-info" class="hidden text-sm fade-in">공기 중에 존재하는 이산화탄소.</div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-between items-center">
+                            <p class="text-3xl text-green-500 -ml-4">↙</p>
+                            <p class="text-3xl text-blue-500 -mr-4">↗</p>
+                        </div>
+                        <div class="w-full flex justify-between">
+                            <div class="interactive-card cursor-pointer text-center" data-info="photosynthesis">
+                                <p class="text-lg font-bold">🌿 생산자 (광합성)</p>
+                                <div id="photosynthesis-info" class="hidden text-sm fade-in">식물이 CO₂를 흡수해 유기물 생성.</div>
+                            </div>
+                            <div class="interactive-card cursor-pointer text-center" data-info="respiration">
+                                <p class="text-lg font-bold">🐇 소비자 (호흡)</p>
+                                <div id="respiration-info" class="hidden text-sm fade-in">생물이 호흡하며 CO₂를 방출.</div>
+                            </div>
+                        </div>
+                        <p class="absolute bottom-16 text-3xl text-red-500">↓</p>
+                        <div class="interactive-card cursor-pointer text-center" data-info="decomposition">
+                            <p class="text-lg font-bold">🍄 분해자 (분해)</p>
+                            <div id="decomposition-info" class="hidden text-sm fade-in">사체나 배설물을 분해하며 CO₂ 방출.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section3" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-green-800">3. 생태계의 안정과 위기</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">건강한 생태계는 스스로 안정된 상태, 즉 '평형'을 유지하려는 놀라운 능력이 있습니다. 하지만 다양한 요인에 의해 이 평형은 깨질 수 있습니다. 시뮬레이션을 통해 생태계 평형의 원리를 배우고, 어떤 위협들이 있는지 알아봅시다.</p>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-center">시뮬레이션: 포식자와 피식자</h3>
+                <p class="text-sm text-gray-600 mb-4 text-center">풀, 토끼(피식자), 여우(포식자)로 이루어진 간단한 생태계입니다. 시간이 지남에 따라 개체수가 어떻게 변하는지 관찰하고, 아래 버튼을 눌러 인위적인 교란을 일으켜보세요. 그래프의 변화를 주목하세요!</p>
+                <div class="chart-container">
+                    <canvas id="predatorPreyChart"></canvas>
+                </div>
+                <div class="mt-6 flex flex-wrap justify-center gap-4">
+                    <button id="add-foxes" class="btn-primary px-4 py-2 rounded-lg font-semibold">여우 추가 투입</button>
+                    <button id="rabbit-disease" class="btn-primary px-4 py-2 rounded-lg font-semibold">토끼 전염병 발생</button>
+                    <button id="reset-simulation" class="bg-gray-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-600">시뮬레이션 초기화</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="section4" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-green-800">4. 스스로 확인하기</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">지금까지 배운 내용을 잘 이해했는지 간단한 퀴즈로 확인해봅시다. 파인만 기법처럼, 스스로 설명할 수 있는지 점검하는 좋은 방법이 될 거예요.</p>
+            
+            <div id="quiz-container" class="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
+                
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-green-800 text-white mt-16 py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 인터랙티브 생태계 탐험. All rights reserved.</p>
+            <p class="text-sm text-green-200 mt-1">고등학교 통합과학 학습자료</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
